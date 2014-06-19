@@ -213,7 +213,7 @@
           if (slider.pagingCount > 1) {
             for (var i = 0; i < slider.pagingCount; i++) {
               slide = slider.slides.eq(i);
-              item = (slider.vars.controlNav === "thumbnails") ? '<img src="' + slide.attr( 'data-thumb' ) + '"/>' : '<a>' + j + '</a>';
+              item = (slider.vars.controlNav === "thumbnails") ? '<img src="' + slide.attr( 'data-thumb' ) + '"/>' : '<a href="#" role="button">' + j + '</a>';
               if ( 'thumbnails' === slider.vars.controlNav && true === slider.vars.thumbCaptions ) {
                 var captn = slide.attr( 'data-thumbcaption' );
                 if ( '' != captn && undefined != captn ) item += '<span class="' + namespace + 'caption">' + captn + '</span>';
@@ -283,7 +283,7 @@
         },
         update: function(action, pos) {
           if (slider.pagingCount > 1 && action === "add") {
-            slider.controlNavScaffold.append($('<li><a>' + slider.count + '</a></li>'));
+            slider.controlNavScaffold.append($('<li><a href="#" role="button">' + slider.count + '</a></li>'));
           } else if (slider.pagingCount === 1) {
             slider.controlNavScaffold.find('li').remove();
           } else {
@@ -295,7 +295,7 @@
       },
       directionNav: {
         setup: function() {
-          var directionNavScaffold = $('<ul class="' + namespace + 'direction-nav"><li><a class="' + namespace + 'prev" href="#">' + slider.vars.prevText + '</a></li><li><a class="' + namespace + 'next" href="#">' + slider.vars.nextText + '</a></li></ul>');
+          var directionNavScaffold = $('<ul class="' + namespace + 'direction-nav"><li><a class="' + namespace + 'prev" href="#" role="button">' + slider.vars.prevText + '</a></li><li><a class="' + namespace + 'next" href="#" role="button">' + slider.vars.nextText + '</a></li></ul>');
 
           // CONTROLSCONTAINER:
           if (slider.controlsContainer) {
@@ -343,7 +343,7 @@
       },
       pausePlay: {
         setup: function() {
-          var pausePlayScaffold = $('<div class="' + namespace + 'pauseplay"><a href="#"></a></div>');
+          var pausePlayScaffold = $('<div class="' + namespace + 'pauseplay"><a href="#" role="button"></a></div>');
 
           // CONTROLSCONTAINER:
           if (slider.controlsContainer) {
