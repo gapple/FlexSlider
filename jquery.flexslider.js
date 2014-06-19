@@ -156,7 +156,7 @@
           slider.asNav = true;
           slider.animatingTo = Math.floor(slider.currentSlide/slider.move);
           slider.currentItem = slider.currentSlide;
-          slider.slides.removeClass(namespace + "active-slide").eq(slider.currentItem).addClass(namespace + "active-slide");
+          slider.slides.removeClass(namespace + "active-slide").attr("aria-hidden", "true").eq(slider.currentItem).addClass(namespace + "active-slide").attr("aria-hidden", "false");
           if(!msGesture){
               slider.slides.on(eventType, function(e){
                 e.preventDefault();
@@ -279,7 +279,12 @@
           slider.controlNav = $('.' + namespace + 'control-nav li ' + selector, (slider.controlsContainer) ? slider.controlsContainer : slider);
         },
         active: function() {
-          slider.controlNav.removeClass(namespace + "active").eq(slider.animatingTo).addClass(namespace + "active");
+          slider.controlNav
+            .removeClass(namespace + "active")
+            .attr("aria-pressed", "false")
+            .eq(slider.animatingTo)
+              .addClass(namespace + "active")
+              .attr("aria-pressed", "true");
         },
         update: function(action, pos) {
           if (slider.pagingCount > 1 && action === "add") {
@@ -680,7 +685,7 @@
 
         // !CAROUSEL:
         // CANDIDATE: slide active class (for add/remove slide)
-        if (!carousel) slider.slides.removeClass(namespace + 'active-slide').eq(target).addClass(namespace + 'active-slide');
+        if (!carousel) slider.slides.removeClass(namespace + 'active-slide').attr("aria-hidden", "true").eq(target).addClass(namespace + 'active-slide').attr("aria-hidden", "false");
 
         // INFINITE LOOP:
         // CANDIDATE: atEnd
@@ -927,7 +932,7 @@
       }
       // !CAROUSEL:
       // CANDIDATE: active slide
-      if (!carousel) slider.slides.removeClass(namespace + "active-slide").eq(slider.currentSlide).addClass(namespace + "active-slide");
+      if (!carousel) slider.slides.removeClass(namespace + "active-slide").attr("aria-hidden", "true").eq(slider.currentSlide).addClass(namespace + "active-slide").attr("aria-hidden", "false");
 
       //FlexSlider: init() Callback
       slider.vars.init(slider);
